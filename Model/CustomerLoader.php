@@ -3,9 +3,9 @@
 
 class CustomerLoader
 {
-    public static function getAllCustomers(PDO $pdo) : array
+    public static function getAllCustomers(PDO $PDO) : array
     {
-        $handle = $pdo->prepare('SELECT * FROM customer');
+        $handle = $PDO->query('SELECT * FROM customer');
         $arrayCustomers = $handle->fetchAll();
 
         $customers = [];
@@ -21,4 +21,6 @@ class CustomerLoader
         }
         return $customers;
     }
+
+
 }

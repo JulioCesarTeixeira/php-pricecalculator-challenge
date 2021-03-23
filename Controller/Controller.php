@@ -13,6 +13,7 @@ class Controller
     public function render(array $GET, array $POST)
     {
         $customers = CustomerLoader::getAllCustomers($this->db);
+        $products = ProductLoader::getAllProducts($this->db);
         //load the view
         require 'View/view.php';
     }
