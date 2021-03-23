@@ -8,10 +8,12 @@ error_reporting(E_ALL);
 require 'config.php';
 require 'Model/Connection.php';
 require 'Model/Customer.php';
+require 'Model/Product.php';
 //include all your controllers here
 require 'Controller/Controller.php';
 
 require 'Model/CustomerLoader.php';
+require 'Model/ProductLoader.php';
 
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!
