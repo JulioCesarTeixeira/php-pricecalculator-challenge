@@ -21,6 +21,4 @@ class CustomerLoader
         }
         return $customers;
     }
-
-
 }

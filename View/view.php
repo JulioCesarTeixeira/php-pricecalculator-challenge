@@ -1,21 +1,28 @@
 <?php require 'includes/header.php';
-var_dump($_POST)?>
+var_dump($_POST);
+?>
+
     <form method="post">
         <div class="form-group">
+
             <label for="customer">Customers</label>
-            <select class="form-control" id="customer" name="customers">
-<?php  /** @var Customer $customer */
-                foreach ($customers AS $customer):?>
-                <option value="<?php echo $customer->getId() ?>"><?php echo $customer->getFirstname() ?></option>
+            <select class="form-control col-2" id="customer" name="customer">
+                <?php /** @var Customer $customer */
+                foreach ($customers as $customer):?>
+                    <option value="<?php echo $customer->getId() ?>"><?php echo $customer->getFirstname() ?></option>
                 <?php endforeach; ?>
             </select>
-            <label for="exampleFormControlSelect1">Products</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option></option>
+
+            <label for="product">Products</label>
+            <select class="form-control col-2" id="product" name="product">
+                <?php /** @var Product $product */
+                foreach ($products as $product):?>
+                    <option value="<?php echo $product->getId() ?>"><?php echo $product->getName() ?></option>
+                <?php endforeach; ?>
             </select>
+
         </div>
-        <input type="hidden" name="id" value=""/>
         <button type="submit" class="btn btn-primary" id="submit" name="run">Find Best Price</button>
     </form>
 
-<?php require 'includes/footer.php';?>
+<?php require 'includes/footer.php'; ?>

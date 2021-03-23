@@ -13,7 +13,7 @@ class Customer
     private ?int $id = null;
 
 
-    public function __construct(string $firstname, string $lastname, int $groupID, null|int $fixedDiscount, null|int $variableDiscount)
+    public function __construct(string $firstname, string $lastname, int $groupID, ?int $fixedDiscount, ?int $variableDiscount)
     {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
@@ -22,7 +22,7 @@ class Customer
         $this->variableDiscount = $variableDiscount;
     }
 
-    public static function LoadCustomer(int $id, string $firstname, string $lastname, int $groupID, null|int $fixedDiscount, null|int $variableDiscount) : customer
+    public static function LoadCustomer(int $id, string $firstname, string $lastname, int $groupID, ?int $fixedDiscount, ?int $variableDiscount) : customer
     {
         $customer = new Customer ($firstname, $lastname, $groupID, $fixedDiscount, $variableDiscount);
         $customer->id = $id;
