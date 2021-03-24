@@ -21,9 +21,5 @@ require 'Model/ProductLoader.php';
 //this file should never be more than 20 lines of code!
 
 $controller = new Controller();
-if(isset($_GET['page']) && $_GET['page'] === 'info') {
-    $controller = new Controller();
-}
-
 
 $controller->render($_GET, $_POST);

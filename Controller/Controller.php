@@ -15,6 +15,7 @@ class Controller
 
 
         if (isset($_POST['customer'])){
+            var_dump($_POST);
             $customer = Customer::LoadCustomer($this->db, (int)$_POST['customer']);
             $groupDiscount = new GroupDiscount($this->db, $customer->getGroupID());
 

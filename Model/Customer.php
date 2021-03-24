@@ -12,21 +12,22 @@ class Customer
     private int $groupID;
     private ?int $fixedDiscount = null;
     private ?int $variableDiscount = null;
-    private ?int $id = null;
+    private ?int $id;
 
 
-    public function __construct(string $firstname, string $lastname, int $groupID, ?int $fixedDiscount, ?int $variableDiscount)
+    public function __construct(string $firstname, string $lastname, int $groupID, ?int $fixedDiscount, ?int $variableDiscount, int $id)
     {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->groupID = $groupID;
         $this->fixedDiscount = $fixedDiscount;
         $this->variableDiscount = $variableDiscount;
+        $this->id = $id;
     }
 
     public static function LoadCustomer(PDO $PDO, int $id) : customer
     {
-        $handle = $PDO->prepare('SELECT * FROM customer_group.customer WHERE id = :id');
+        $handle = $PDO->prepare('SELECT * FROM customer_group.customer c WHERE c.id = :id');
         $handle->bindValue('id', $id);
         $handle->execute();
         $rawData = $handle->fetch();
@@ -35,7 +36,8 @@ class Customer
             $rawData['lastname'],
             (int)$rawData['group_id'],
             (int)$rawData['fixed_discount'],
-            (int)$rawData['variable_discount']);
+            (int)$rawData['variable_discount'],
+        (int)$id);
     }
 
 
