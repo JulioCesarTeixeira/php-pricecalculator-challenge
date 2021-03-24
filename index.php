@@ -11,6 +11,8 @@ require 'Model/Customer.php';
 require 'Model/Product.php';
 require 'Model/GroupDiscount.php';
 require 'Model/CustomerDiscount.php';
+require 'Model/BestPrice.php';
+
 //include all your controllers here
 require 'Controller/Controller.php';
 

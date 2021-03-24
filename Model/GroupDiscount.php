@@ -42,7 +42,7 @@ class GroupDiscount
     /**
      * @return int
      */
-    public function getGroupVarDis(): int
+    public function getVariableDiscount(): int
     {
         return $this->groupVarDis;
     }
@@ -50,7 +50,7 @@ class GroupDiscount
     /**
      * @return int
      */
-    public function getGroupFixDis(): int
+    public function getFixedDiscount(): int
     {
         return $this->groupFixDis;
     }

@@ -1,6 +1,8 @@
 <?php
 
 
+use JetBrains\PhpStorm\Pure;
+
 class Product
 {
         private ?int $id = null;
@@ -12,17 +14,29 @@ class Product
      * @param string $name
      * @param int $price
      */
-    public function __construct(string $name, int $price)
+    public function __construct( int $id, string $name, int $price)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->price = $price;
+
     }
 
-    public static function LoadProduct(int $id, string $name, int $price) : Product
+    #[Pure] public static function GetProduct(int $id, string $name, int $price) : Product
     {
-        $product = new Product ($name, $price);
-        $product->id = $id;
-        return $product;
+        return new Product ($id,$name, $price);
+    }
+
+    public static function LoadProduct(PDO $pdo, int $id) : Product
+    {
+        $handle = $pdo->prepare('SELECT * FROM product p WHERE p.id = :id');
+        $handle->bindValue('id', $id);
+        $handle->execute();
+        $rawData = $handle->fetch();
+        return new Product (
+            $rawData['id'],
+            $rawData['name'],
+            (int)$rawData['price']);
     }
 
     /**
@@ -42,11 +56,11 @@ class Product
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getPrice(): int
+    #[Pure] public function getPrice(): float
     {
-        return $this->price;
+        return number_format($this->price/100, 2) ;
     }
 
 

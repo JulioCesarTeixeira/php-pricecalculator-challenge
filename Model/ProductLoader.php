@@ -10,7 +10,7 @@ class ProductLoader
 
         $products = [];
         foreach ($arrayProducts AS ['id' => $id, 'name' => $name, 'price' => $price]) {
-            $products[] = Product::LoadProduct(
+            $products[] = Product::GetProduct(
                 $id,
                 $name,
                 $price
