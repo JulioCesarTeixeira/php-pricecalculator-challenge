@@ -15,10 +15,17 @@ class Controller
 
 
         if (isset($_POST['customer'])){
-            $groupDiscount = new discount($this->db, $_POST['customer']);
+            $customer = Customer::LoadCustomer($this->db, (int)$_POST['customer']);
+            $groupDiscount = new GroupDiscount($this->db, $customer->getGroupID());
+
+            $customerVariable = $customer->getVariableDiscount();
+            $customerFixed = $customer->getFixedDiscount();
 
             echo "Best variable group-discount: ".$groupDiscount->getGroupVarDis()."<br>";
             echo "Total fixed group-discount: ".$groupDiscount->getGroupFixDis()."<br>";
+            echo "Total fixed customer-discount: ".$customerFixed. "<br>";
+            echo "Total variable customer-discount: ".$customerVariable . "<br>";
+
         }
 
 

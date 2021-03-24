@@ -7,7 +7,7 @@
             <select class="form-control col-2" id="customer" name="customer">
                 <?php /** @var Customer $customer */
                 foreach ($customers as $customer):?>
-                    <option value="<?php echo $customer->getGroupID() ?>"><?php echo $customer->getFirstname() ?></option>
+                    <option value="<?php echo $customer->getId()?>"><?php echo $customer->getFirstname() ?></option>
                 <?php endforeach; ?>
             </select>
 
@@ -15,7 +15,7 @@
             <select class="form-control col-2" id="product" name="product">
                 <?php /** @var Product $product */
                 foreach ($products as $product):?>
-                    <option value="<?php echo $product->getId() ?>"><?php echo $product->getName() ?></option>
+                    <option value="<?php echo $product->getId() ?>"><?php echo $product->getName() . ": $" . $product->getPrice() ?></option>
                 <?php endforeach; ?>
             </select>
 

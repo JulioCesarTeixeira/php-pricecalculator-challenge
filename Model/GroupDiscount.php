@@ -1,7 +1,7 @@
 <?php
 
 
-class Discount
+class GroupDiscount
 {
     private int $groupFixDis = 0;
     private int $groupVarDis = 0;

@@ -24,12 +24,20 @@ class Customer
         $this->variableDiscount = $variableDiscount;
     }
 
-    #[Pure] public static function LoadCustomer(int $id, string $firstname, string $lastname, int $groupID, ?int $fixedDiscount, ?int $variableDiscount) : customer
+    public static function LoadCustomer(PDO $PDO, int $id) : customer
     {
-        $customer = new Customer ($firstname, $lastname, $groupID, $fixedDiscount, $variableDiscount);
-        $customer->id = $id;
-        return $customer;
+        $handle = $PDO->prepare('SELECT * FROM customer_group.customer WHERE id = :id');
+        $handle->bindValue('id', $id);
+        $handle->execute();
+        $rawData = $handle->fetch();
+        return new Customer (
+            $rawData['firstname'],
+            $rawData['lastname'],
+            (int)$rawData['group_id'],
+            (int)$rawData['fixed_discount'],
+            (int)$rawData['variable_discount']);
     }
+
 
     /**
      * @return string
