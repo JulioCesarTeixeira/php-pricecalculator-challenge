@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 //$customer = Customer::LoadCustomer();
 
+use JetBrains\PhpStorm\Pure;
+
 class Customer
 {
     private string $firstname;
@@ -22,7 +24,7 @@ class Customer
         $this->variableDiscount = $variableDiscount;
     }
 
-    public static function LoadCustomer(int $id, string $firstname, string $lastname, int $groupID, ?int $fixedDiscount, ?int $variableDiscount) : customer
+    #[Pure] public static function LoadCustomer(int $id, string $firstname, string $lastname, int $groupID, ?int $fixedDiscount, ?int $variableDiscount) : customer
     {
         $customer = new Customer ($firstname, $lastname, $groupID, $fixedDiscount, $variableDiscount);
         $customer->id = $id;

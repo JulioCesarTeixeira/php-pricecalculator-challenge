@@ -1,6 +1,4 @@
-<?php require 'includes/header.php';
-var_dump($_POST);
-?>
+<?php require 'includes/header.php'; ?>
 
     <form method="post">
         <div class="form-group">
@@ -9,7 +7,7 @@ var_dump($_POST);
             <select class="form-control col-2" id="customer" name="customer">
                 <?php /** @var Customer $customer */
                 foreach ($customers as $customer):?>
-                    <option value="<?php echo $customer->getId() ?>"><?php echo $customer->getFirstname() ?></option>
+                    <option value="<?php echo $customer->getGroupID() ?>"><?php echo $customer->getFirstname() ?></option>
                 <?php endforeach; ?>
             </select>
 

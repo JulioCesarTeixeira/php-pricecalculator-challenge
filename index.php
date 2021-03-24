@@ -9,6 +9,7 @@ require 'config.php';
 require 'Model/Connection.php';
 require 'Model/Customer.php';
 require 'Model/Product.php';
+require 'Model/Discount.php';
 //include all your controllers here
 require 'Controller/Controller.php';
 
