@@ -3,15 +3,13 @@ declare(strict_types=1);
 
 //$customer = Customer::LoadCustomer();
 
-use JetBrains\PhpStorm\Pure;
-
 class Customer
 {
     private string $firstname;
     private string $lastname;
     private int $groupID;
-    private ?int $fixedDiscount = null;
-    private ?int $variableDiscount = null;
+    private ?int $fixedDiscount;
+    private ?int $variableDiscount;
     private ?int $id;
 
 
@@ -37,7 +35,7 @@ class Customer
             (int)$rawData['group_id'],
             (int)$rawData['fixed_discount'],
             (int)$rawData['variable_discount'],
-        (int)$id);
+            $id);
     }
 
 
@@ -57,6 +55,11 @@ class Customer
         return $this->lastname;
     }
 
+    public function getFullName(): string
+    {
+        return $this->lastname." ".$this->firstname;
+    }
+
     /**
      * @return int
      */
@@ -66,7 +69,7 @@ class Customer
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getFixedDiscount(): ?int
     {
@@ -74,7 +77,7 @@ class Customer
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getVariableDiscount(): ?int
     {

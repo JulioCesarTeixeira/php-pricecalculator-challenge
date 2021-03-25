@@ -5,12 +5,13 @@ use JetBrains\PhpStorm\Pure;
 
 class Product
 {
-        private ?int $id = null;
+        private ?int $id;
         private string $name;
         private int $price;
 
     /**
      * Product constructor.
+     * @param int $id
      * @param string $name
      * @param int $price
      */

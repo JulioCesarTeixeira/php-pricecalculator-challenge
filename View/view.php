@@ -32,4 +32,5 @@ echo "<br>";
         <button type="submit" class="btn btn-primary" id="submit" name="run">Find Best Price</button>
     </form>
 
+
 <?php require 'includes/footer.php'; ?>

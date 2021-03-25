@@ -5,7 +5,7 @@ class CustomerLoader
 {
     public static function getAllCustomers(PDO $PDO) : array
     {
-        $handle = $PDO->query('SELECT * FROM customer');
+        $handle = $PDO->query('SELECT * FROM customer c ORDER BY c.firstname');
         $arrayCustomers = $handle->fetchAll();
 
         $customers = [];
