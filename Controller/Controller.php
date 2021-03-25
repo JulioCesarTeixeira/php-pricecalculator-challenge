@@ -13,24 +13,21 @@ class Controller
     public function render(array $GET, array $POST): void
     {
 
+        $productName = '';
+        $productPrice = '';
+        $finalPrice = '';
+        $customer = 'none';
 
-        if (isset($_POST['customer'])){
-            var_dump($_POST);
-            $customer = Customer::LoadCustomer($this->db, (int)$_POST['customer']);
+        if (isset($_POST['customer']) && !empty($_POST['customer']) ){
+            $customer = Customer::LoadCustomer($this->db, (int) $_POST['customer']);
+            $product = Product::LoadProduct($this->db, (int) $_POST['product']);
+
             $groupDiscount = new GroupDiscount($this->db, $customer->getGroupID());
 
-            $customerVariable = $customer->getVariableDiscount();
-            $customerFixed = $customer->getFixedDiscount();
-
-            echo "Best variable group-discount: ".$groupDiscount->getGroupVarDis()."<br>";
-            echo "Total fixed group-discount: ".$groupDiscount->getGroupFixDis()."<br>";
-            echo "Total fixed customer-discount: ".$customerFixed. "<br>";
-            echo "Total variable customer-discount: ".$customerVariable . "<br>";
-
+            $productName = $product->getName();
+            $productPrice = $product->getPrice();
+            $finalPrice = BestPrice::CalcFinalPrice($customer,$product,$groupDiscount);
         }
-
-
-
 
         $customers = CustomerLoader::getAllCustomers($this->db);
         $products = ProductLoader::getAllProducts($this->db);

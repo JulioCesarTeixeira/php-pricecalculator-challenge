@@ -22,12 +22,12 @@ class Customer
         $this->groupID = $groupID;
         $this->fixedDiscount = $fixedDiscount;
         $this->variableDiscount = $variableDiscount;
-        $this->id = $id;
+        $this->id= $id;
     }
 
     public static function LoadCustomer(PDO $PDO, int $id) : customer
     {
-        $handle = $PDO->prepare('SELECT * FROM customer_group.customer c WHERE c.id = :id');
+        $handle = $PDO->prepare('SELECT * FROM customer c WHERE c.id = :id');
         $handle->bindValue('id', $id);
         $handle->execute();
         $rawData = $handle->fetch();

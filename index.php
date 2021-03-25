@@ -10,7 +10,8 @@ require 'Model/Connection.php';
 require 'Model/Customer.php';
 require 'Model/Product.php';
 require 'Model/GroupDiscount.php';
-require 'Model/CustomerDiscount.php';
+require 'Model/BestPrice.php';
+
 //include all your controllers here
 require 'Controller/Controller.php';
 
@@ -21,5 +22,7 @@ require 'Model/ProductLoader.php';
 //this file should never be more than 20 lines of code!
 
 $controller = new Controller();
+
+
 
 $controller->render($_GET, $_POST);
