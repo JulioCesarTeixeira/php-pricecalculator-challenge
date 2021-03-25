@@ -41,6 +41,7 @@ class Controller
         $customers = CustomerLoader::getAllCustomers($this->db);
         $products = ProductLoader::getAllProducts($this->db);
 
+        //query to add Emails and passwords to all users
 //        foreach ($customers as $customer) {
 //            $email = $customer->getFirstName() . '@' . $customer->getFirstName() . '.be';
 //            $id = $customer->getId();
@@ -70,9 +71,11 @@ class Controller
     #[NoReturn] public function logout(array $GET, array $POST): void
     {
 
-        $_SESSION['login'] = false;
-        require 'View/login.php';
-    }
+        session_destroy();
+        header("location:index.php");
+        exit;
 
+    }
+//require 'View/login.php';
 
 }
