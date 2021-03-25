@@ -5,7 +5,7 @@ class ProductLoader
 {
     public static function getAllProducts(PDO $PDO) : array
     {
-        $handle = $PDO->query('SELECT * FROM product');
+        $handle = $PDO->query('SELECT * FROM product p ORDER BY p.name');
         $arrayProducts = $handle->fetchAll();
 
         $products = [];
