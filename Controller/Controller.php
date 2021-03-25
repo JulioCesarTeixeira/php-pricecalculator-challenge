@@ -13,10 +13,11 @@ class Controller
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(array $GET, array $POST): void
     {
-        $customerName = 'Buyer: ';
-        $productName = 'Buying: ';
-        $productPrice = 'Full Price: ';
-        $finalPrice = 'Discount Price: ';
+        $customerName = 'Hey there, <b>';
+        $productName = 'You selected <b>';
+        $productPrice = 'The normal price of your product would be: $<b> ';
+        $finalPrice = 'With our Price is Right you only have to pay: $<b> ';
+        $bulkDiscount = 'However, if you cannot get enough of it and wish to purchase the product in bulk, the price per unity would be: $ <b>';
 
 
         if (!empty($_SESSION['customer']) && !empty($_SESSION['product'])) {
@@ -29,8 +30,9 @@ class Controller
             $productName .= $product->getName();
             $productPrice .= $product->getPrice();
             $finalPrice .= BestPrice::CalcFinalPrice($customer, $product, $groupDiscount);
+            $bulkDiscount .= number_format(BestPrice::CalcFinalPrice($customer, $product, $groupDiscount) * (0.9),2);
 
-            unset($_SESSION['customer'], $_SESSION['product']);
+//            unset($_SESSION['customer'], $_SESSION['product']);
         }
 
         $customers = CustomerLoader::getAllCustomers($this->db);

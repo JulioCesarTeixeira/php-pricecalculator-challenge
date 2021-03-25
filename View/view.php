@@ -1,10 +1,14 @@
 <?php require 'includes/header.php'; ?>
 <?php
-echo "You chose a <b>" . $productName. "</b> <br>";
-echo "The normal price of your product would be: " . $productPrice."<br>";
-echo "However, with our Price is Right you only have to pay : " . $finalPrice."<br>";
+if(!empty($_SESSION['customer']) && !empty($_SESSION['product'])): ?>
+<?php echo $customerName ."</b> <br>";
+echo $productName. "</b> <br>";
+echo $productPrice ."</b> <br>";
+echo $finalPrice."</b> <br>";
+echo $bulkDiscount."</b> <br>";
 echo "<br>";
 ?>
+<?php endif; ?>
 
     <form method="post">
         <div class="form-group">
@@ -26,8 +30,8 @@ echo "<br>";
                     <option value="<?php echo $product->getId() ?>"><?php echo $product->getName() . ": $" . $product->getPrice() ?></option>
                 <?php endforeach; ?>
             </select>
-            <?php echo $productName ?>
-            <?php echo '$'. $productPrice ?>
+<!--            --><?php //echo $productName ?>
+<!--            --><?php //echo '$'. $productPrice ?>
         </div>
         <button type="submit" class="btn btn-primary" id="submit" name="run">Find Best Price</button>
     </form>
