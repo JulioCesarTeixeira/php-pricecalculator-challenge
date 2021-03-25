@@ -20,10 +20,10 @@ class Customer
         $this->groupID = $groupID;
         $this->fixedDiscount = $fixedDiscount;
         $this->variableDiscount = $variableDiscount;
-        $this->id= $id;
+        $this->id = $id;
     }
 
-    public static function LoadCustomer(PDO $PDO, int $id) : customer
+    public static function LoadCustomer(PDO $PDO, int $id): customer
     {
         $handle = $PDO->prepare('SELECT * FROM customer c WHERE c.id = :id');
         $handle->bindValue('id', $id);
@@ -38,6 +38,17 @@ class Customer
             $id);
     }
 
+    public static function CheckCustomerLogin(PDO $PDO, $email, $password): bool
+    {
+        $handle = $PDO->prepare('SELECT * FROM customer c WHERE c.email = :email');
+        $handle->bindValue('email', $email);
+        $handle->execute();
+        $rawData = $handle->fetch();
+        if ($rawData === false) {
+            return false;
+        }
+        return password_verify($password, $rawData['password']);
+    }
 
     /**
      * @return string
@@ -57,7 +68,7 @@ class Customer
 
     public function getFullName(): string
     {
-        return $this->lastname." ".$this->firstname;
+        return $this->lastname . " " . $this->firstname;
     }
 
     /**
@@ -91,7 +102,6 @@ class Customer
     {
         return $this->id;
     }
-
 
 
 }

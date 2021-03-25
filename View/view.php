@@ -1,4 +1,5 @@
 <?php require 'includes/header.php'; ?>
+<?php require 'includes/logout.php';?>
 <?php
 if(!empty($_SESSION['customer']) && !empty($_SESSION['product'])): ?>
 <?php echo $customerName ."</b> <br>";
