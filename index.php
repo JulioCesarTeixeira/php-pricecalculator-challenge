@@ -22,7 +22,8 @@ require 'Controller/Controller.php';
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!
 
-if (!empty($_POST['customer']) && !empty($_POST['product']) ){
+
+if (!empty($_POST['customer']) && !empty($_POST['product'])) {
     $_SESSION['customer'] = $_POST['customer'];
     $_SESSION['product'] = $_POST['product'];
 
@@ -34,5 +35,8 @@ if (!empty($_POST['customer']) && !empty($_POST['product']) ){
 $controller = new Controller();
 
 
-
-$controller->render($_GET, $_POST);
+if (isset($_SESSION['login']) && $_SESSION['login']) {
+    $controller->render($_GET, $_POST);
+} else {
+    $controller->login($_GET, $_POST);
+}

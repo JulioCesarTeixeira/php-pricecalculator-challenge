@@ -17,4 +17,23 @@ class CustomerLoader
         }
         return $customers;
     }
+
+    public static function updateCustomer(PDO $PDO)
+    {
+        $password = '1234';
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        $handle = $PDO->query("UPDATE customer_group.customer c
+        SET c.password = '$passwordHash', c.email = ''
+        WHERE id = 2");
+    }
+
+    public static function CostumerLogin(PDO $PDO, $email, $password)
+    {
+
+        $handle = $PDO->query("SELECT * FROM customer_group.customer 
+                                WHERE email = '$email'");
+        $rawData = $handle->fetch();
+        return password_verify($password, $rawData['password']);
+
+    }
 }
