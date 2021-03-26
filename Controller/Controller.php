@@ -41,9 +41,11 @@ class Controller
         $customers = CustomerLoader::getAllCustomers($this->db);
         $products = ProductLoader::getAllProducts($this->db);
 
-        foreach($products as $product) {
-
-        }
+//        foreach($products as $product) {
+//            $category = "Julios choice";
+//            $handle = $this->db->query("UPDATE product SET category ='$category' WHERE id < 30 ");
+//            $handle->execute();
+//        }
 
         //query to add Emails and passwords to all users
 //        foreach ($customers as $customer) {
