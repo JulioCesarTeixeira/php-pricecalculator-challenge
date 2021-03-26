@@ -8,24 +8,27 @@ class Product
         private ?int $id;
         private string $name;
         private int $price;
+        private string $category;
 
     /**
      * Product constructor.
      * @param int $id
      * @param string $name
      * @param int $price
+     * @param string $category
      */
-    public function __construct( int $id, string $name, int $price)
+    public function __construct( int $id, string $name, int $price, string $category)
     {
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
+        $this->category = $category;
 
     }
 
-    #[Pure] public static function GetProduct(int $id, string $name, int $price) : Product
+    #[Pure] public static function GetProduct(int $id, string $name, int $price, string $category) : Product
     {
-        return new Product ($id,$name, $price);
+        return new Product ($id,$name, $price, $category);
     }
 
     public static function LoadProduct(PDO $pdo, int $id) : Product
@@ -37,7 +40,8 @@ class Product
         return new Product (
             $rawData['id'],
             $rawData['name'],
-            (int)$rawData['price']);
+            (int)$rawData['price'],
+            $rawData['category']);
     }
 
     /**
@@ -63,6 +67,16 @@ class Product
     {
         return number_format($this->price/100, 2) ;
     }
+
+    /**
+     * @return string
+     */
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
+
+
 
 
 }

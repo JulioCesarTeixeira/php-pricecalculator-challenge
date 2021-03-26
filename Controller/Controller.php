@@ -39,7 +39,9 @@ class Controller
         }
 
         $customers = CustomerLoader::getAllCustomers($this->db);
-        $products = ProductLoader::getAllProducts($this->db);
+        $products = ProductLoader::getAllProducts($this->db, $_GET['category']?? null);
+        $categories = ProductLoader::getAllCategories($this->db);
+
 
 //        foreach($products as $product) {
 //            $category = "Julios choice";
