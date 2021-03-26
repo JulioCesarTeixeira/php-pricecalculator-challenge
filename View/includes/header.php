@@ -11,5 +11,5 @@
 </head>
 <body>
     <header>
-     <h1>Our Price is right!</h1>
+     <h1>Our Price Is Right!</h1>
     </header>

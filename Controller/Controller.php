@@ -12,6 +12,7 @@ class Controller
         $this->db = new Connection();
     }
 
+
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(array $GET, array $POST): void
     {
@@ -35,11 +36,14 @@ class Controller
             $finalPrice .= BestPrice::CalcFinalPrice($customer, $product, $groupDiscount);
             $bulkDiscount .= number_format(BestPrice::CalcFinalPrice($customer, $product, $groupDiscount) * (0.9), 2);
 
-//            unset($_SESSION['customer'], $_SESSION['product']);
         }
 
         $customers = CustomerLoader::getAllCustomers($this->db);
         $products = ProductLoader::getAllProducts($this->db);
+
+        foreach($products as $product) {
+
+        }
 
         //query to add Emails and passwords to all users
 //        foreach ($customers as $customer) {
@@ -63,6 +67,8 @@ class Controller
 
             header("Location:index.php");
             exit;
+
+
         }
 
         require 'View/login.php';
@@ -76,6 +82,6 @@ class Controller
         exit;
 
     }
-//require 'View/login.php';
+
 
 }
