@@ -10,6 +10,10 @@
     <title>PHP-Price Calculator</title>
 </head>
 <body>
-    <header>
-     <h1>Our Price is right!</h1>
-    </header>
+
+<header>
+    <h1>Our Price is right!</h1>
+</header>
+<nav>
+    <?php require 'navigation.php' ?>
+</nav>
