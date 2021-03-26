@@ -1,19 +1,15 @@
 <?php require 'includes/header.php'; ?>
-<?php require 'includes/logout.php';
-if (!isset($_SESSION['login']) || !$_SESSION['login']) {
-    header("Location:../index.php");
-    exit;
-} ?>
-
+<?php require 'includes/logout.php';?>
 <?php
 if (!empty($_SESSION['customer']) && !empty($_SESSION['product'])): ?>
-    <?php echo $customerName . "</b> <br>";
-    echo $productName . "</b> <br>";
-    echo $productPrice . "</b> <br>";
-    echo $finalPrice . "</b> <br>";
-    echo $bulkDiscount . "</b> <br>";
-    echo "<br>";
-    ?>
+
+    <p>Hey there <b><?php echo $customerName; ?></b></p>
+    <p>You selected <b><?php echo $productName; ?></b></p>
+    <p>The normal price of your product would be: <b>$ <?php echo $productPrice; ?></b></p>
+    <p>With our Price is Right you only have to pay: <b>$ <?php echo $finalPrice; ?></b></p>
+    <p>However, if you cannot get enough of it and wish to purchase the product in bulk, the price per unit would be:
+        <b>$ <?php echo $bulkDiscount; ?></b></p>
+
 <?php endif; ?>
 
     <div class="mx-auto col-12">
@@ -52,4 +48,27 @@ if (!empty($_SESSION['customer']) && !empty($_SESSION['product'])): ?>
             <button type="submit" class="btn btn-primary" id="submit" name="run">Find Best Price</button>
         </form>
     </div>
+
+<?php if (!empty($_SESSION['customer']) && !empty($_SESSION['product'])): ?>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Full Price</th>
+            <th scope="col">Fixed Discount</th>
+            <th scope="col">Variable Discount</th>
+            <th scope="col">Final Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><?php echo $productName ?></td>
+            <td><?php echo $productPrice ?></td>
+            <td><?php echo $finalPrice ?></td>
+            <td><?php echo $finalPrice ?></td>
+            <td><?php echo $finalPrice ?></td>
+        </tr>
+        </tbody>
+    </table>
+<?php endif; ?>
 <?php require 'includes/footer.php'; ?>

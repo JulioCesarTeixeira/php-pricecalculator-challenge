@@ -17,11 +17,11 @@ class Controller
     public function render(array $GET, array $POST): void
     {
 
-        $customerName = 'Hey there, <b>';
-        $productName = 'You selected <b>';
-        $productPrice = 'The normal price of your product would be: $<b> ';
-        $finalPrice = 'With our Price is Right you only have to pay: $<b> ';
-        $bulkDiscount = 'However, if you cannot get enough of it and wish to purchase the product in bulk, the price per unity would be: $ <b>';
+        $customerName = '';
+        $productName = '';
+        $productPrice = '';
+        $finalPrice = '';
+        $bulkDiscount = '';
 
 
         if (!empty($_SESSION['customer']) && !empty($_SESSION['product'])) {
@@ -30,12 +30,11 @@ class Controller
 
             $groupDiscount = new GroupDiscount($this->db, $customer->getGroupID());
 
-            $customerName .= $customer->getFullName();
-            $productName .= $product->getName();
-            $productPrice .= $product->getPrice();
-            $finalPrice .= BestPrice::CalcFinalPrice($customer, $product, $groupDiscount);
-            $bulkDiscount .= number_format(BestPrice::CalcFinalPrice($customer, $product, $groupDiscount) * (0.9), 2);
-
+            $customerName = $customer->getFullName();
+            $productName = $product->getName();
+            $productPrice = $product->getPrice();
+            $finalPrice = BestPrice::CalcFinalPrice($customer, $product, $groupDiscount);
+            $bulkDiscount = number_format(BestPrice::CalcFinalPrice($customer, $product, $groupDiscount) * (0.9), 2);
         }
 
         $customers = CustomerLoader::getAllCustomers($this->db);
@@ -71,8 +70,6 @@ class Controller
 
             header("Location:index.php");
             exit;
-
-
         }
 
         require 'View/login.php';
@@ -80,11 +77,9 @@ class Controller
 
     #[NoReturn] public function logout(array $GET, array $POST): void
     {
-
         session_destroy();
-        header("location:index.php");
+        header("Location:index.php");
         exit;
-
     }
 
 
